@@ -245,7 +245,7 @@ class sp3tensor:
         return "<sp3tensor \n  val:%s , \n  ind:%s>" % (str(self.__values), str(self.__indexes))
 
 
-def test_leyer_decomposition():
+def test_layer_decomposition():
     for i in range(100):
         I = 2
         J = 3
@@ -253,9 +253,8 @@ def test_leyer_decomposition():
         A = np.arange(I*J*L).reshape(I, J, L)
         A_ = sp3tensor.fromtensor(A)
         if np.linalg.norm(sp3tensor.fromlayers(A_.tolayers()).todense() - A) > 0.0001:
-            print 'Test failed!"'
-            break
-    print 'All tests passed'
+            raise NotImplementedError, 'Test failed!"'
+    print 'All layering tests passed'
 
 def test_unfold1():
     for i in range(100):
@@ -271,7 +270,7 @@ def test_unfold1():
         if (np.linalg.norm(naive_unfold1(A) - A_.tofold_1())) > 0.0001:
             print 'Test failed!'
             break
-    print 'All tests are passed'
+    print 'All unfold1 tests are passed'
 
 def test_unfold2():
     for i in range(100):
@@ -287,7 +286,7 @@ def test_unfold2():
         if (np.linalg.norm(naive_unfold2(A) - A_.tofold_2())) > 0.0001:
             print 'Test failed!'
             break
-    print 'All tests are passed'
+    print 'All unfold2 tests are passed'
 
 # ### Tensor-tensor multiplication test
 
@@ -349,11 +348,11 @@ def test_tenmat3():
         A[np.random.randint(0, I, I), np.random.randint(0, J, I), np.random.randint(0, K, I)] = np.random.rand(I)
         A_ = sp3tensor.fromtensor(A)
         
-        if np.linalg.norm(A_.tenmat3(D).todense() - dense_tensmatr(A, D)) > 0.00001:
+        if np.linalg.norm(A_.tenmat3(D) - dense_tensmatr(A, D)) > 0.00001:
             print 'Test failed!'
             break
             
-    print 'All test are passed!'
+    print 'All tenmat test are passed!'
     
 # ### Tensor T test
 
@@ -372,7 +371,7 @@ def transpose_test():
             print 'Test failed!'
             break
             
-    print 'All tests have passed!'
+    print 'All traspnation tests have passed!'
 
 # ### Checking speed in compariasne with dense tensors
 
@@ -508,12 +507,16 @@ def test_huge_numbers(repeates = 5):
     plt.show()
 
 def all_test():
-    test_leyer_decomposition()
+    test_layer_decomposition()
     test_unfold1()
     test_unfold2()
     test_tenten()
-    test_tenmat()
+    # test_tenmat()
     test_tenmat3()
     transpose_test()
     # speedcheck()
     # test_huge_numbers(repeates = 3)
+
+if __name__ == '__main__':
+    print 'Running test'
+    all_test()

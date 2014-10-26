@@ -10,4 +10,10 @@ Requirements:
 - numpy
 - scipy
 
-See usage in example.py (SimRank on tensors)
+To use it, import sp3tensor from sp3tensor
+
+To run tests, run sp3tensor.py
+
+See usage in simrank_example.py (SimRank on tensors). 
+
+For more details see *.ipynb file (IPython Notebook)
