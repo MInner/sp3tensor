@@ -25,5 +25,5 @@ For more details see *.ipynb file (IPython Notebook)
 The internal storage is: a list of indexes ([0 11 545 32 2325]) and list of values ([34 53 26 23 777]) + function to map from internal index spase into tensor space. To perform any kind of convolution (tensor-tensor or matrix-tensor), convert tensor into one of three *-mode unfoldings and use matrix dot product. The 'unfold-*' functions return csc-matrixes that can be easily multiplied by anything from numpy.
 
 **Note**: in alpha still, bugs and sudden interface changes are possible.
-=======
+
 For more details see *.ipynb file (IPython Notebook)
